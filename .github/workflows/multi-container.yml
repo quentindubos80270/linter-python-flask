@@ -1,6 +1,6 @@
 name: test multi container
 on:
-    workflow_dispatch
+    workflow_dispatch:
     workflow_run:
         workflows: ["Docker publish to GHCR"]
         types:
