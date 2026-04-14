@@ -1,7 +1,7 @@
 services:
   api-python:
     build:
-      context:
+      context: .
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -14,7 +14,7 @@ services:
       - DB_PORT=5432
     depends_on:
       db:
-        condition: services_healthy
+        condition: service_healthy
   
   db:
     image: postgres:14-alpine
@@ -23,9 +23,9 @@ services:
       POSTGRES_PASSWORD: TestPass
       POSTGRES_DB: TestDB
     ports:
-      -"5432:5432"
+      - "5432:5432"
     volumes:
-      -db-data-test:/var/lib/postgresql/data
+      - db-data-test:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U TestUser -d TestDB"]
       interval: 10s
