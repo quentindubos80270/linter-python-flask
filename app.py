@@ -12,11 +12,11 @@ DB_PASSWORD = os.getenv("DB_PASSWORD", "TestPass")
 
 @app.route("/health")
 def health_check():
-    return jsonify({"status":"ok"})
+    return jsonify({"status": "ok"})
 
 @app.route("/hello")
 def hello():
-    return jsonify({"message":"Hello World"})
+    return jsonify({"message": "Hello World"})
 
 def get_db_connection():
         conn = psycopg2.connect(
@@ -45,4 +45,4 @@ def db_test():
         return jsonify({"db_connection": "failed", "error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5000)
+    app.run(host="0.0.0.0", port=5000)
