@@ -29,7 +29,7 @@ def get_db_connection():
         return conn
 
 @app.route("/dbtest")
-def dbtest():
+def db_test():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
