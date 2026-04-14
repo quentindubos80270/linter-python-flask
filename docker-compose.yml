@@ -1,8 +1,10 @@
 services:
   api-python:
-    image: ghcr.io/quentindubos80270/linter-python-flask/monapp:latest
+    build:
+      context:
+      dockerfile: Dockerfile
     ports:
-      -"5000":"5000"
+      - "5000:5000"
     environment:
       - ENV=test
       - DB_USER=TestUser
