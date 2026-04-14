@@ -4,7 +4,7 @@ from app import app
 @pytest.fixture
 def client_app():
     with app.test_client() as client:
-        with app.app_content():
+        with app.app_context():
             yield client
 
 def test_health(client_app):
