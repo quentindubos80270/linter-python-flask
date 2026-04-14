@@ -1,0 +1,35 @@
+services:
+  api-python:
+    image: ghcr.io/quentindubos80270/linter-python-flask/monapp:latest
+    ports:
+      -"5000":"5000"
+    environment:
+      - ENV=test
+      - DB_USER=TestUser
+      - DB_PASSWORD=TestPass
+      - DB_NAME=TestDB
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      db:
+        condition: services_healthy
+  
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: TestUser
+      POSTGRES_PASSWORD: TestPass
+      POSTGRES_DB: TestDB
+    ports:
+      -"5432:5432"
+    volumes:
+      -db-data-test:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U TestUser -d TestDB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  db-data-test:
