@@ -35,8 +35,8 @@ def db_test():
         cur = conn.cursor()
         cur.execute('SELECT 1')
         result = cur.fetchone()
-        cur.closed()
-        conn.closed()
+        cur.close()
+        conn.close()
         if result:
             return jsonify({"db_connection": "successfull"})
         else:
