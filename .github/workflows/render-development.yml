@@ -18,11 +18,11 @@ jobs:
             run: terraform plan -out=tfplan
             env:
               TF_VAR_api_key: ${{secrets.API_KEY}}
-              TF_VAR_owner_id: ${{secret.OWNER_ID}}
+              TF_VAR_owner_id: ${{secrets.OWNER_ID}}
               TF_VAR_environment: "development"
           - name: terraform apply
             run: terraform apply -auto-approve tfplan
             env:
               TF_VAR_api_key: ${{secrets.API_KEY}}
-              TF_VAR_owner_id: ${{secret.OWNER_ID}}
+              TF_VAR_owner_id: ${{secrets.OWNER_ID}}
               TF_VAR_environment: "development"     
